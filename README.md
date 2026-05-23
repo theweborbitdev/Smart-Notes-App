@@ -1,50 +1,47 @@
 # Smart Notes App
 
-Smart Notes App is a small MERN stack assessment project for creating, viewing, editing, deleting, and searching notes. It uses a React + Vite frontend, an Express API, and MongoDB Atlas through Mongoose so notes persist between app restarts.
+Smart Notes App is a persistent mini-app built with the MERN stack. Users can create, view, update, delete, and search notes. Notes are stored in MongoDB, so they remain available after stopping and restarting the app.
 
 ## Features
 
 - Create notes with a required title and optional content
-- View all notes ordered by newest first
+- View saved notes, newest first
 - Edit existing notes
 - Delete notes
-- Search notes by title with instant, case-insensitive filtering
+- Search notes by title instantly
+- Case-insensitive search
+- Persistent MongoDB storage
 - Backend validation for empty titles and invalid MongoDB IDs
-- Centralized JSON error handling
-- Responsive single-page interface with loading and error states
+- Centralized JSON error responses
+- Responsive React UI with loading and error states
 
-## Tech Stack
+## Stack
 
-**Frontend**
-
-- React
-- Vite
+- React + Vite
 - Axios
-- Plain CSS
-
-**Backend**
-
 - Node.js
 - Express.js
 - MongoDB Atlas
 - Mongoose
-- dotenv
-- CORS
+- Plain CSS
 
 ## Project Structure
 
 ```text
 project-root/
-├── client/
-├── server/
-│   ├── controllers/
-│   ├── models/
-│   └── routes/
-├── README.md
-└── ANSWERS.md
++-- client/
+|   +-- src/
++-- server/
+|   +-- config/
+|   +-- controllers/
+|   +-- middleware/
+|   +-- models/
+|   +-- routes/
++-- README.md
++-- ANSWERS.md
 ```
 
-## Prerequisites
+## Requirements
 
 - Node.js 18 or newer
 - npm
@@ -52,57 +49,43 @@ project-root/
 
 ## Environment Setup
 
-Create a `.env` file inside `server/`:
+Create `server/.env`:
 
 ```env
 MONGO_URI=your_mongodb_connection_string
 PORT=5000
 ```
 
-An example file is provided at `server/.env.example`.
+Use `server/.env.example` as the template. Do not commit real credentials.
 
-## Installation
+## Run On A Fresh Machine
 
-From the project root, install backend dependencies:
+From the repo root:
 
 ```bash
 cd server
 npm install
-```
-
-Install frontend dependencies:
-
-```bash
-cd ../client
-npm install
-```
-
-## Run Commands
-
-Start the backend API on port `5000`:
-
-```bash
-cd server
 npm run dev
 ```
 
-Start the frontend on port `5173`:
+Open a second terminal from the repo root:
 
 ```bash
 cd client
+npm install
 npm run dev
 ```
 
-Open the app in the browser:
+Open:
 
 ```text
 http://localhost:5173
 ```
 
-The frontend expects the API at `http://localhost:5000` by default. To override it, create `client/.env`:
+Backend API:
 
-```env
-VITE_API_URL=http://localhost:5000
+```text
+http://localhost:5000
 ```
 
 ## API Routes
@@ -114,20 +97,14 @@ VITE_API_URL=http://localhost:5000
 | PUT | `/notes/:id` | Update a note |
 | DELETE | `/notes/:id` | Delete a note |
 
-## Screenshots
+## Persistence Check
 
-Add screenshots here after running the project locally.
+Create a note in the UI, stop both servers, start them again, and refresh the browser. The note should still be visible because it is stored in MongoDB.
 
-## Suggested Git Commit History
+## Commit History
+
+This repository includes incremental commits showing progress. To view them:
 
 ```bash
-git add . && git commit -m "initialize project structure"
-git add server && git commit -m "initialize backend setup"
-git add server/models server/controllers server/routes && git commit -m "add note CRUD API"
-git add server && git commit -m "add validation and error handling"
-git add client && git commit -m "initialize React Vite frontend"
-git add client/src && git commit -m "build note CRUD interface"
-git add client/src && git commit -m "add instant title search"
-git add README.md ANSWERS.md && git commit -m "document setup and assessment answers"
+git log --oneline --reverse
 ```
-
