@@ -6,7 +6,10 @@
     "build": "npm install --prefix client && npm install --prefix server && npm run build --prefix client"
   },
   "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "mongoose": "^8.24.0",
     "serverless-http": "^3.2.0"
   }
 }
-
