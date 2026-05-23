@@ -101,6 +101,31 @@ http://localhost:5000
 
 Create a note in the UI, stop both servers, start them again, and refresh the browser. The note should still be visible because it is stored in MongoDB.
 
+## Deploy To Netlify
+
+This project is Netlify-ready. The React app is built as static files, and the Express API runs through a Netlify Function.
+
+1. Push the repository to GitHub.
+2. In Netlify, choose **Add new site** > **Import an existing project**.
+3. Select the GitHub repository.
+4. Use these build settings:
+
+```text
+Build command: npm run build
+Publish directory: client/dist
+Functions directory: netlify/functions
+```
+
+5. Add this environment variable in Netlify:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+```
+
+6. Deploy the site.
+
+The deployed frontend calls `/notes`, and `netlify.toml` redirects those API requests to the Netlify Function.
+
 ## Commit History
 
 This repository includes incremental commits showing progress. To view them:
